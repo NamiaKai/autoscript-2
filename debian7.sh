@@ -131,7 +131,7 @@ wget -O menu "https://raw.githubusercontent.com/NamiaKai/autoscript-2/master/men
 wget -O usernew "https://raw.githubusercontent.com/NamiaKai/autoscript-2/master/usernew.sh"
 wget -O trial "https://raw.githubusercontent.com/NamiaKai/autoscript-2/master/trial.sh"
 wget -O hapus "https://raw.githubusercontent.com/NamiaKai/autoscript-2/master/hapus.sh"
-wget -O cek "https://raw.githubusercontent.com/NamiaKai/autoscript-2/masteruser-login.sh"
+wget -O cek "https://raw.githubusercontent.com/NamiaKai/autoscript-2/master/user-login.sh"
 wget -O member "https://raw.githubusercontent.com/NamiaKai/autoscript-2/master/user-list.sh"
 wget -O resvis "https://raw.githubusercontent.com/NamiaKai/autoscript-2/master/resvis.sh"
 wget -O speedtest "https://raw.githubusercontent.com/NamiaKai/autoscript-2/master/speedtest_cli.py"
