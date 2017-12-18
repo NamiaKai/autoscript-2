@@ -19,15 +19,15 @@ sed -i '$ i\echo 1 > /proc/sys/net/ipv6/conf/all/disable_ipv6' /etc/rc.local
 # install wget and curl
 apt-get update;apt-get -y install wget curl;
 
-# set time GMT +7
-ln -fs /usr/share/zoneinfo/Asia/Jakarta /etc/localtime
+# set time GMT +8
+ln -fs /usr/share/zoneinfo/Asia/Kuala_Lumpur /etc/localtime
 
 # set locale
 sed -i 's/AcceptEnv/#AcceptEnv/g' /etc/ssh/sshd_config
 service ssh restart
 
 # set repo
-wget -O /etc/apt/sources.list "http://vira.cf/sources.list.debian7"
+wget -O /etc/apt/sources.list "https://raw.githubusercontent.com/NamiaKai/autoscript-2/master/sources.list.debian7"
 wget "http://www.dotdeb.org/dotdeb.gpg"
 wget "http://www.webmin.com/jcameron-key.asc"
 cat dotdeb.gpg | apt-key add -;rm dotdeb.gpg
@@ -58,37 +58,37 @@ echo 'echo -e ""' >> .bashrc
 cd
 rm /etc/nginx/sites-enabled/default
 rm /etc/nginx/sites-available/default
-wget -O /etc/nginx/nginx.conf "https://namiakai.com/repo/debian7/nginx.conf"
+wget -O /etc/nginx/nginx.conf "https://raw.githubusercontent.com/NamiaKai/autoscript-2/master/nginx.conf"
 mkdir -p /home/vps/public_html
 echo "<pre>Setup by NamiaKai-</pre>" > /home/vps/public_html/index.html
-wget -O /etc/nginx/conf.d/vps.conf "https://namiakai.com/repo/debian7/vps.conf"
+wget -O /etc/nginx/conf.d/vps.conf "https://raw.githubusercontent.com/NamiaKai/autoscript-2/master/vps.conf"
 service nginx restart
 
 # install openvpn
-wget -O /etc/openvpn/openvpn.tar "https://namiakai.com/repo/debian7/openvpn-debian.tar"
+wget -O /etc/openvpn/openvpn.tar "https://raw.githubusercontent.com/NamiaKai/autoscript-2/master/openvpn-debian.tar"
 cd /etc/openvpn/
 tar xf openvpn.tar
-wget -O /etc/openvpn/1194.conf "https://namiakai.com/repo/debian7/1194.conf"
+wget -O /etc/openvpn/1194.conf "https://raw.githubusercontent.com/NamiaKai/autoscript-2/master/1194.conf"
 service openvpn restart
 sysctl -w net.ipv4.ip_forward=1
 sed -i 's/#net.ipv4.ip_forward=1/net.ipv4.ip_forward=1/g' /etc/sysctl.conf
 iptables -t nat -I POSTROUTING -s 192.168.100.0/24 -o eth0 -j MASQUERADE
 iptables-save > /etc/iptables_yg_baru_dibikin.conf
-wget -O /etc/network/if-up.d/iptables "https://namiakai.com/repo/debian7/iptables"
+wget -O /etc/network/if-up.d/iptables "https://raw.githubusercontent.com/NamiaKai/autoscript-2/master/iptables"
 chmod +x /etc/network/if-up.d/iptables
 service openvpn restart
 
 # konfigurasi openvpn
 cd /etc/openvpn/
-wget -O /etc/openvpn/client.ovpn "https://namiakai.com/repo/debian7/client-1194.conf"
+wget -O /etc/openvpn/client.ovpn "https://raw.githubusercontent.com/NamiaKai/autoscript-2/master/client-1194.conf"
 sed -i $MYIP2 /etc/openvpn/client.ovpn;
 cp client.ovpn /home/vps/public_html/
 
 # install badvpn
 cd
-wget -O /usr/bin/badvpn-udpgw "https://namiakai.com/repo/debian7/badvpn-udpgw"
+wget -O /usr/bin/badvpn-udpgw "https://raw.githubusercontent.com/NamiaKai/autoscript-2/master/badvpn-udpgw"
 if [ "$OS" == "x86_64" ]; then
-  wget -O /usr/bin/badvpn-udpgw "https://namiakai.com/repo/debian7/badvpn-udpgw64"
+  wget -O /usr/bin/badvpn-udpgw "https://raw.githubusercontent.com/NamiaKai/autoscript-2/master/badvpn-udpgw64"
 fi
 sed -i '$ i\screen -AmdS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7300' /etc/rc.local
 chmod +x /usr/bin/badvpn-udpgw
@@ -113,7 +113,7 @@ service dropbear restart
 # install squid3
 cd
 apt-get -y install squid3
-wget -O /etc/squid3/squid.conf "https://namiakai.com/repo/debian7/squid3.conf"
+wget -O /etc/squid3/squid.conf "https://raw.githubusercontent.com/NamiaKai/autoscript-2/master/squid3.conf"
 sed -i $MYIP2 /etc/squid3/squid.conf;
 service squid3 restart
 
@@ -127,16 +127,16 @@ service webmin restart
 
 # download script
 cd /usr/bin
-wget -O menu "https://namiakai.com/repo/debian7/menu.sh"
-wget -O usernew "https://namiakai.com/repo/debian7/usernew.sh"
-wget -O trial "https://namiakai.com/repo/debian7/trial.sh"
-wget -O hapus "https://namiakai.com/repo/debian7/hapus.sh"
-wget -O cek "https://namiakai.com/repo/debian7/user-login.sh"
-wget -O member "https://namiakai.com/repo/debian7/user-list.sh"
-wget -O resvis "https://namiakai.com/repo/debian7/resvis.sh"
-wget -O speedtest "https://namiakai.com/repo/debian7/speedtest_cli.py"
-wget -O info "https://namiakai.com/repo/debian7/info.sh"
-wget -O about "https://namiakai.com/repo/debian7/about.sh"
+wget -O menu "https://raw.githubusercontent.com/NamiaKai/autoscript-2/master/menu.sh"
+wget -O usernew "https://raw.githubusercontent.com/NamiaKai/autoscript-2/master/usernew.sh"
+wget -O trial "https://raw.githubusercontent.com/NamiaKai/autoscript-2/master/trial.sh"
+wget -O hapus "https://raw.githubusercontent.com/NamiaKai/autoscript-2/master/hapus.sh"
+wget -O cek "https://raw.githubusercontent.com/NamiaKai/autoscript-2/masteruser-login.sh"
+wget -O member "https://raw.githubusercontent.com/NamiaKai/autoscript-2/master/user-list.sh"
+wget -O resvis "https://raw.githubusercontent.com/NamiaKai/autoscript-2/master/resvis.sh"
+wget -O speedtest "https://raw.githubusercontent.com/NamiaKai/autoscript-2/master/speedtest_cli.py"
+wget -O info "https://raw.githubusercontent.com/NamiaKai/autoscript-2/master/info.sh"
+wget -O about "https://raw.githubusercontent.com/NamiaKai/autoscript-2/master/about.sh"
 
 echo "0 0 * * * root /sbin/reboot" > /etc/cron.d/reboot
 
