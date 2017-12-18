@@ -4,7 +4,7 @@ Berikut adalah langkah-langkah eksekusi Script Auto Install untuk VPS Debian 7 3
 2. Install sertifikat dengan perintah :
 apt-get install ca-certificates
 3. Download script dengan perintah :
-wget http://vira.cf/debian7.sh
+wget https://raw.githubusercontent.com/NamiaKai/autoscript-2/master/debian7.sh
 4. Atur permisi dengan perintah :
 chmod +x debian7.sh
 5. Terakhir, eksekusi script dengan perintah :
